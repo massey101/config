@@ -25,21 +25,6 @@
 (add-hook 'python-mode-hook 'column-number-mode)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;; PHP ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Load PHP mode
-(load "~/.emacs.d/php-mode")
-(require 'php-mode)
-
-; Electric Pairs
-;(add-hook 'c-mode-hook
-;              (lambda ()
-;                (define-key python-mode-map "\"" 'electric-pair)
-;                (define-key python-mode-map "\'" 'electric-pair)
-;                (define-key python-mode-map "(" 'electric-pair)
-;                (define-key python-mode-map "[" 'electric-pair)
-;                (define-key python-mode-map "{" 'electric-pair)))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (add-to-list 'load-path "~/.emacs.d/go-mode")
 (require 'go-mode-autoloads)
@@ -100,29 +85,6 @@
 (ac-config-default)
 (global-auto-complete-mode t)
 
-
-(global-set-key (kbd "M-O <left>") 'hide-other)
-(global-set-key (kbd "M-O <right>") 'show-all)
-(global-set-key (kbd "M-O <up>") 'outline-previous-heading)
-(global-set-key (kbd "M-O <down>") 'outline-next-heading)
-(global-set-key (kbd "M-o <left>") 'hide-subtree)
-(global-set-key (kbd "M-o <right>") 'show-subtree)
-(global-set-key (kbd "M-o <up>") 'outline-previous-visible-heading)
-(global-set-key (kbd "M-o <down>") 'outline-next-visible-heading)
-
-(defun cjm-outline-bindings ()
-  "sets shortcut bindings for outline minor mode"
-  (interactive)
-  (local-set-key (kbd "C-up") 'hide-other)
-  (local-set-key (kbd "C-down") 'show-all)
-  (local-set-key (kbd "C-left") 'hide-subtree)
-  (local-set-key (kbd "C-right") 'show-subtree))
-
-(global-set-key (kbd "M-[ a") 'hide-sublevels)
-(global-set-key (kbd "M-[ b") 'show-all)
-(global-set-key (kbd "M-[ c") 'show-children)
-(global-set-key (kbd "M-[ d") 'hide-subtree)
-
 ; Outline minor mode
 (add-hook 'c-mode-common-hook #'outline-minor-mode)
 (add-hook 'python-mode-hook #'outline-minor-mode)
@@ -149,6 +111,3 @@
  '(font-lock-type-face ((t (:foreground "green"))))
  '(font-lock-variable-name-face ((t (:foreground "yellow"))))
  '(linum ((t (:foreground "brightblack")))))
-
-(defun my-outline-easy-bindings ()
-  (require 'outline-mode-easy-bindings nil t))
