@@ -41,7 +41,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/go-mode.el.bak")
+(add-to-list 'load-path "~/.emacs.d/go-mode.el")
 (require 'go-mode-autoloads)
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -149,9 +149,6 @@
  '(font-lock-type-face ((t (:foreground "green"))))
  '(font-lock-variable-name-face ((t (:foreground "yellow"))))
  '(linum ((t (:foreground "brightblack")))))
-
-(add-hook 'outline-mode-hook 'my-outline-easy-bindings)
-(add-hook 'outline-minor-mode-hook 'my-outline-easy-bindings)
 
 (defun my-outline-easy-bindings ()
   (require 'outline-mode-easy-bindings nil t))
