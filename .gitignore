@@ -1,7 +1,17 @@
+# Ignore everything
 *
 
-!emacs*
+# Not these files
+!.emacs
+!.emacs.d
+!.emacs.d/*
+!.emacs.d/*/*
+!.emacs.d/*/*/*
+!.emacs.d/*/*/*/*
+!.emacs.d/*/*/*/*/*
 !.gitignore
+!.tmux.conf
 
+# Ignore these files anyway
 .emacs.d/auto-save-list
 .emacs.d/ac-comphist.dat
