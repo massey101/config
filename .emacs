@@ -77,7 +77,7 @@
 (autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
 (add-hook 'latex-mode-hook 'flyspell-mode)
 (setq flyspell-sort-corrections nil)
-
+(global-set-key (kbd "C-o") 'flyspell-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;; General ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup emacs backup
