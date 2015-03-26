@@ -59,6 +59,20 @@
 
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
+
+;;;;;;;;;;;;;;;;;;;;;;; Nesc Mode ;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/nesc/")
+(autoload 'nesc-mode "nesc.el")
+(add-to-list 'auto-mode-alist '("\\.nc\\'" . nesc-mode))
+
+;; Set tab width
+(setq nesc-basic-offset 4)
+
+;; Line numbering modes
+(add-hook 'nesc-mode-hook 'linum-mode)
+(add-hook 'nesc-mode-hook 'column-number-mode)
+
+
 ;;;;;;;;;;;;;;;;;;;;; General ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup emacs backup
 (setq
