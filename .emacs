@@ -73,6 +73,12 @@
 (add-hook 'nesc-mode-hook 'column-number-mode)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;; LaTeX ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(autoload 'flyspell-mode "flyspell" "On-the-fly spelling checker." t)
+(add-hook 'latex-mode-hook 'flyspell-mode)
+(setq flyspell-sort-corrections nil)
+
+
 ;;;;;;;;;;;;;;;;;;;;; General ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Setup emacs backup
 (setq
