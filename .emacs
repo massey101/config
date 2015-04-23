@@ -26,13 +26,13 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/go-mode")
-(require 'go-mode-autoloads)
-(add-hook 'before-save-hook 'gofmt-before-save)
+;; (add-to-list 'load-path "~/.emacs.d/go-mode")
+;; (require 'go-mode-autoloads)
+;; (add-hook 'before-save-hook 'gofmt-before-save)
 
-;; Flymake
-(add-to-list 'load-path "~/Documents/go/src/github.com/dougm/goflymake")
-(require 'go-flymake)
+;; ;; Flymake
+;; (add-to-list 'load-path "~/Documents/go/src/github.com/dougm/goflymake")
+;; (require 'go-flymake)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;; Web Mode ;;;;;;;;;;;;;;;;;;;;;;;;;
