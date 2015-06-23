@@ -25,6 +25,12 @@
 (add-hook 'python-mode-hook 'column-number-mode)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;; QML ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/qml-mode")
+(require 'qml-mode)
+(add-to-list 'auto-mode-alist '("\\.qml\\'" . qml-mode))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;; GO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (add-to-list 'load-path "~/.emacs.d/go-mode")
 ;; (require 'go-mode-autoloads)
