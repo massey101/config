@@ -5,9 +5,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+(add-to-list 'load-path "~/.emacs.d/hexl-mode")
+(require 'nhexl-mode)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;; C ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set tab width
-(setq c-basic-offset 8)
+(setq c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
 
 ;; Add C ElDoc
 (setq c-eldoc-includes "`pkg-config gtk+-2.0 --cflags` -I./ -I../ ")
