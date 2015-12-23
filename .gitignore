@@ -12,6 +12,7 @@
 !.gitignore
 !.tmux.conf
 !.zshrc
+!.vimrc
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
