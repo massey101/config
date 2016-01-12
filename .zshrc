@@ -36,6 +36,7 @@ COMPLETION_WAITING_DOTS="true"
 
 DEFAULT_USER=jack
 SHARE_HISTORY=
+setopt no_share_history
 
 
 # Uncomment the following line if you want to disable marking untracked files
