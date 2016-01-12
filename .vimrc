@@ -77,4 +77,9 @@ call vam#ActivateAddons(['taglist'])
 call vam#ActivateAddons(['color-schemes'])
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Task Juggler                                                           """
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:hi Folded ctermbg=022
+:hi Folded ctermfg=255
 
