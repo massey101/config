@@ -2,6 +2,12 @@
 *
 
 # Not these files
+!.bin
+!.bin/*
+!.bin/*/*
+!.bin/*/*/*
+!.bin/*/*/*/*
+!.bin/*/*/*/*/*
 !.emacs
 !.emacs.d
 !.emacs.d/*
@@ -12,6 +18,7 @@
 !.gitignore
 !.tmux.conf
 !.vimrc
+!.bash_aliases
 
 # Ignore these files anyway
 .emacs.d/auto-save-list

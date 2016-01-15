@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+import sys
+import os
+
+a = '\033[33m'
+b = '\033[32m'
+e = '\033[0m'
+
+
+def usage(name):
+    print("Usage: {} file".format(name))
+    quit(1)
+
+def check_file(filename):
+    if not os.path.isfile(filename):
+        print("Error: {} is not a file".format(filename))
+        return
+
+    i = 1
+    with open(filename) as f:
+        for line in f:
+            if len(line) > 80:
+                print(b + filename + e + ":" + a + str(i) + e + " " + line.strip('\n'))
+            i += 1
+
+def main(args):
+    if len(args) < 2:
+        usage(args[0])
+    for arg in args[1:]:
+        check_file(arg)
+    return 0
+
+
+if __name__ == '__main__':
+    main(sys.argv)
