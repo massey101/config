@@ -27,6 +27,14 @@ alias gg="git log --graph --oneline --decorate --all"
 
 
 ###############################################################################
+# Funny aliases
+###############################################################################
+alias fucking=sudo
+alias busy='cat /dev/urandom | hexdump -C | grep "ca fe"'
+alias busy2='j=4;while true; do let j=$j+1; for i in $(seq 0 1 100); do echo $i; random=$RANDOM; let "random %= 1000"; sleep 0.$random; done | dialog --gauge "Install part $j : `sed $(perl -e "print int rand(99999)")"q;d" /usr/share/dict/words`" 6 40;done'
+
+
+###############################################################################
 # Set vim as default editor
 ###############################################################################
 EDITOR=vim
