@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    elinks "rfc-editor.org/standards"
+elif [ $# -eq 1 ]; then
+    elinks "rfc-editor.org/rfc/rfc${1}.txt"
+else
+    echo "Usage: $0 [num]"
+fi
