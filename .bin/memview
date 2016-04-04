@@ -1,0 +1,11 @@
+#!/bin/bash
+
+format='{ hr=$1/1024 ; printf("%13.6f MiB ",hr) } { for ( x=4 ; x<=NF ; x++ ) { printf("%s ",$x) } print "" }'
+
+if [ $# -eq 0 ]; then
+    ps -eo size,pid,user,command | awk "$format" | sort -h
+elif [ $# -eq 1 ]; then
+    ps -eo size,pid,user,command | grep "$1" | grep -v memview | grep -v grep | awk "$format" | sort
+else
+    echo "usage: $0 [filter]"
+fi
