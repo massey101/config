@@ -3,6 +3,8 @@
 import sys
 import os
 
+max_length=80
+
 a = '\033[33m'
 b = '\033[32m'
 e = '\033[0m'
@@ -20,7 +22,7 @@ def check_file(filename):
     i = 1
     with open(filename) as f:
         for line in f:
-            if len(line) > 80:
+            if len(line) > max_length:
                 print(b + filename + e + ":" + a + str(i) + e + " " + line.strip('\n'))
             i += 1
 
