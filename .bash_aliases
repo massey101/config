@@ -16,7 +16,7 @@ if [ -n "$TMUX" ]; then
     tmux set-environment -r NEWW
 
     # Override our prompt to keep us updated with the cwd
-    PS1='$(tmux set-environment TMUX_$(echo $TMUX_PANE | tr -d '%')_PATH $PWD)'$PS1
+    PS1='$(tmux set-environment TMUX_$(echo $TMUX_PANE | tr -d '%')_PATH "$PWD")'$PS1
 fi
 
 
