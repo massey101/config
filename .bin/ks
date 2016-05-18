@@ -1,0 +1,23 @@
+#!/usr/bin/kermit +
+
+define serialconnect {
+       set line \%1
+       if fail exit 1 "Device not available"
+       set speed \%2
+       set carrier-watch OFF
+       set flow-control NONE
+       eightbit
+       set stop-bits 1
+       connect
+}
+
+if defined \%1 {
+    if defined \%2 {
+        serialconnect \%1 \%2
+    } else {
+        serialconnect \%1 115200
+    }
+} else {
+    serialconnect /dev/ttyS0 115200
+}
+exit
