@@ -19,6 +19,10 @@
 !.tmux.conf
 !.vimrc
 !.bash_aliases
+!.setup
+!.setup/*
+!.setup/*/*
+!.setup/*/*/*
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
