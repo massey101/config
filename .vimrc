@@ -239,7 +239,7 @@ if has("cscope")
     let newcsdbpath = s:Find_in_parent("cscope.out",s:windowdir(),$HOME)
     if newcsdbpath != "Nothing"
         " add any cscope database in current directory
-        exe "cs add " . newcsdbpath . "/cscope.out " . newcsdbpath
+        exe "cs add " . newcsdbpath . "/cscope.out "
     " else add the database pointed to by environment variable
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
