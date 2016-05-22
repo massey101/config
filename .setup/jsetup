@@ -5,8 +5,8 @@
 ###############################################################################
 
 
-install_lite=(vim git tmux openssh-server)
-install_master=(${install_lite[@]} gimp lm-sensors wine)
+install_lite=(vim git tmux openssh-server elinks)
+install_master=(${install_lite[@]} gimp lm-sensors wine python-dev rdesktop)
 install_laptop=(${install_master[@]})
 install_dev=(ckermit colordiff cscope curl dos2unix git-review nfs-common nfs-kernel-server wireshark)
 install_nvidia=(mesa-utils nvidia-current nvidia-settings)
