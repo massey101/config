@@ -3,26 +3,16 @@
 
 # Not these files
 !.bin
-!.bin/*
-!.bin/*/*
-!.bin/*/*/*
-!.bin/*/*/*/*
-!.bin/*/*/*/*/*
+!.bin/**
 !.emacs
 !.emacs.d
-!.emacs.d/*
-!.emacs.d/*/*
-!.emacs.d/*/*/*
-!.emacs.d/*/*/*/*
-!.emacs.d/*/*/*/*/*
+!.emacs.d/**
 !.gitignore
 !.tmux.conf
 !.vimrc
 !.bash_aliases
 !.setup
-!.setup/*
-!.setup/*/*
-!.setup/*/*/*
+!.setup/**
 !.docker
 !.docker/**
 
