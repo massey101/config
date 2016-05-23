@@ -23,6 +23,8 @@
 !.setup/*
 !.setup/*/*
 !.setup/*/*/*
+!.docker
+!.docker/**
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
