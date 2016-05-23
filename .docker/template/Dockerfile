@@ -6,8 +6,7 @@ ARG userID
 ARG username
 
 RUN apt-get update && apt-get install -y \
-    build-essential \
-    python-sphinx \
+    # Packages here
     && rm -rf /var/lib/apt/lists/*
 
 # Setup our users
@@ -18,4 +17,3 @@ RUN adduser ${username} sudo
 USER ${username}
 
 CMD /bin/bash
-
