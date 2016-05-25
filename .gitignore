@@ -15,6 +15,7 @@
 !.setup/**
 !.docker
 !.docker/**
+!.vimperatorrc
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
