@@ -6,6 +6,7 @@ ARG userID
 ARG username
 
 RUN apt-get update && apt-get install -y \
+    sudo \
     # Packages here
     && rm -rf /var/lib/apt/lists/*
 
