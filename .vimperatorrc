@@ -14,8 +14,8 @@ set complete=sf
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Add pagedown and pageup
-noremap J <C-f>
-noremap K <C-b>
+noremap J <C-d>
+noremap K <C-u>
 " Added moving tabs left and righ
 noremap <C-h> :tabprevious<CR>
 noremap <C-l> :tabnext<CR>
