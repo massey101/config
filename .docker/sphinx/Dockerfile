@@ -7,7 +7,7 @@ ARG username
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    python-sphinx \
+    python3-sphinx \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup our users
