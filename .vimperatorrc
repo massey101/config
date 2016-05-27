@@ -17,8 +17,8 @@ set complete=sf
 noremap J <C-f>
 noremap K <C-b>
 " Added moving tabs left and righ
-noremap H :tabprevious<CR>
-noremap L :tabnext<CR>
+noremap <C-h> :tabprevious<CR>
+noremap <C-l> :tabnext<CR>
 
 " Press 'C-a' to select all
 noremap <C-a> <C-Home><S-End>
