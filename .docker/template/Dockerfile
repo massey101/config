@@ -11,9 +11,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup our users
-RUN adduser --uid ${userID} ${username}
+RUN useradd --uid ${userID} ${username}
 RUN echo ${username}:${username} | chpasswd
-RUN adduser ${username} sudo
+RUN usermod -a -G sudo ${username}
 
 USER ${username}
 
