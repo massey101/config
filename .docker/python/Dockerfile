@@ -6,9 +6,10 @@ ARG userID
 ARG username
 
 RUN apt-get update && apt-get install -y \
+    sudo \
     python3 \
     python3-setuptools \
-    sudo \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --uid ${userID} ${username}
