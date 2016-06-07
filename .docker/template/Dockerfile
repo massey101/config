@@ -11,10 +11,15 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Setup our users
-RUN useradd --uid ${userID} ${username}
-RUN echo ${username}:${username} | chpasswd
-RUN usermod -a -G sudo ${username}
+RUN mkdir -p /home/${username} && \
+    useradd --uid ${userID} ${username} && \
+    echo ${username}:${username} | chpasswd && \
+    usermod -a -G sudo ${username} && \
+    echo "${username} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${username} && \
+    chmod 0440 /etc/sudoers.d/${username} && \
+    chown -R ${username}.${username} /home/${username}
 
 USER ${username}
+WORKDIR /home/${username}
 
 CMD /bin/bash
