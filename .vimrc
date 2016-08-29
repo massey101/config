@@ -94,36 +94,36 @@ call vam#ActivateAddons(['color-schemes'])
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ My Hardcore Mode                                                           """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Insert> <Nop>
-nnoremap <Delete> <Nop>
-nnoremap <PageUp> <Nop>
-nnoremap <PageDown> <Nop>
-nnoremap <Home> <Nop>
-nnoremap <End> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
-inoremap <Insert> <Nop>
-inoremap <Delete> <Nop>
-inoremap <PageUp> <Nop>
-inoremap <PageDown> <Nop>
-inoremap <Home> <Nop>
-inoremap <End> <Nop>
-vnoremap <Up> <Nop>
-vnoremap <Down> <Nop>
-vnoremap <Left> <Nop>
-vnoremap <Right> <Nop>
-vnoremap <Insert> <Nop>
-vnoremap <Delete> <Nop>
-vnoremap <PageUp> <Nop>
-vnoremap <PageDown> <Nop>
-vnoremap <Home> <Nop>
-vnoremap <End> <Nop>
+" nnoremap <Up> <Nop>
+" nnoremap <Down> <Nop>
+" nnoremap <Left> <Nop>
+" nnoremap <Right> <Nop>
+" nnoremap <Insert> <Nop>
+" nnoremap <Delete> <Nop>
+" nnoremap <PageUp> <Nop>
+" nnoremap <PageDown> <Nop>
+" nnoremap <Home> <Nop>
+" nnoremap <End> <Nop>
+" inoremap <Up> <Nop>
+" inoremap <Down> <Nop>
+" inoremap <Left> <Nop>
+" inoremap <Right> <Nop>
+" inoremap <Insert> <Nop>
+" inoremap <Delete> <Nop>
+" inoremap <PageUp> <Nop>
+" inoremap <PageDown> <Nop>
+" inoremap <Home> <Nop>
+" inoremap <End> <Nop>
+" vnoremap <Up> <Nop>
+" vnoremap <Down> <Nop>
+" vnoremap <Left> <Nop>
+" vnoremap <Right> <Nop>
+" vnoremap <Insert> <Nop>
+" vnoremap <Delete> <Nop>
+" vnoremap <PageUp> <Nop>
+" vnoremap <PageDown> <Nop>
+" vnoremap <Home> <Nop>
+" vnoremap <End> <Nop>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ vimdiff
