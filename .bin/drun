@@ -23,6 +23,8 @@ to_rel_dir() {
 workingdir=.
 exportdir=$(pwd)
 name="None"
+video=""
+audio=""
 
 # Check that we have dockerdir
 arg_check_config() {
@@ -53,33 +55,41 @@ docker_build() {
 docker_run() {
     # Run our command in the docker image
     fullcommand="$@"
-    docker run -it -w /${dirname}/${workingdir} -v "${exportdir}:/${dirname}" "$name" /bin/bash -c "$fullcommand"
+    docker run -it $video $opengl -w /${dirname}/${workingdir} -v "${exportdir}:/${dirname}" "$name" $fullcommand
 }
 
 
 # Main
 # -----------------------------------------------------------------------------
 main() {
+    local build=false
     arg_check_config
+    if [ "$1" == "-b" ]; then
+        build=true
+        shift 1
+    fi
     if [ "$1" == "-d" ]; then
         exportdir=$(to_abs_dir "$2")
         to_abs_dir "$2"
         workingdir=$(to_rel_dir $(pwd) $exportdir)
         shift 2
     fi
+    if [ "$1" == "-x" ]; then
+        video="-e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix"
+        shift 1
+    fi
+    if [ "$1" == "-a" ]; then
+        audio="--device /dev/snd"
+        shift 1
+    fi
     arg_image $@
     shift 1
     dirname=$(basename $(readlink -f $exportdir))
 
-
-    #output=$(docker_build)
-    docker_build
-    #if [[ "$output" == *"Running in"* ]]; then
-    #    echo "$output"
-        echo "
-===============================================================================
-"
-    #fi
+    if [ $build == true ]; then
+        docker_build
+        exit $?
+    fi
     docker_run "$@"
 }
 
