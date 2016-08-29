@@ -1,0 +1,170 @@
+#!/bin/bash
+# Bash wrappers for docker run commands
+# Author: Jack Massey
+# Based on Aliases by Jess Frazelle.
+# See https://github.com/jfrazelle/dotfiles/blob/master/.dockerfunc
+###############################################################################
+
+dockerfile_prefix="/home/jack/.docker/"
+
+
+
+# Helper Functions
+# -----------------------------------------------------------------------------
+dcleanup() {
+    docker rm $(docker ps -aq 2>/dev/null) 2>/dev/null
+    docker rm -v $(docker ps --filter status=exited -q 2>/dev/null) 2>/dev/null
+    docker rmi $(docker images --filter dangling=true -q 2>/dev/null) 2>/dev/null
+}
+
+
+del_stopped() {
+    local name=$1
+    local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
+
+    if [[ "$state" == "false" ]]; then
+        docker rm $name
+    fi
+}
+
+
+get_basename() {
+    basename $(readlink -f $1)
+}
+
+
+# Command container aliases
+# -----------------------------------------------------------------------------
+
+pep8() {
+    exportdir=$(pwd)
+    dirname=$(get_basename $exportdir)
+    workingdir="."
+
+    docker run -it \
+        -v "${exportdir}:/${dirname}" \
+        -w /${dirname}/${workingdir} \
+        pep8 \
+        "$@"
+}
+
+
+j4mdiag_build() {
+    docker build \
+        --build-arg userID=$UID \
+        --build-arg username=$USER \
+        -t "j4mdiag" \
+        ${dockerfile_prefix}/j4mdiag
+}
+
+j4mdiag() {
+    exportdir=$(pwd)
+    dirname=$(get_basename $exportdir)
+    workingdir="."
+
+    docker run -it \
+        -v "${exportdir}:/${dirname}" \
+        -w /${dirname}/${workingdir} \
+        j4mdiag\
+        "$@"
+}
+
+
+
+# Service Containers
+# =============================================================================
+
+# Gogs
+# -----------------------------------------------------------------------------
+gogs() { docker_service "$@"; }
+gogs_create() {
+    gogs_dir="/var/gogs/"
+    docker run \
+        -d \
+        -p 10022:22 \
+        -p 3000:3000 \
+        -v "$gogs_dir:/data" \
+        --name=${FUNCNAME[2]} \
+        gogs/gogs
+}
+
+
+# Simple Gallery
+# -----------------------------------------------------------------------------
+gallery() { docker_service "$@"; }
+gallery_create() {
+    gallery_dir="/home/jack/Pictures/shared/"
+    docker run \
+        -d \
+        -p 8686:80 \
+        -v "$flask_dir:/images" \
+        --name=${FUNCNAME[2]} \
+        -e "GALLERY_TITLE=Camping Trip" \
+    docwhat/image-gallery
+}
+
+# Flask Images
+# -----------------------------------------------------------------------------
+flask_images() { docker_service "$@"; }
+flask_images_build() {
+    curl -L -o /tmp/flask.zip https://github.com/gipi/flask-simple-image-gallery/archive/flask.zip
+    unzip /tmp/flask.zip -d /tmp/
+    #mv /tmp/flask-simple-image-gallery-flask/* \
+    #    ${dockerfile_prefix}/flask_images/
+
+    # echo 'GALLERY_ROOT_DIR = "/var/gallery"' > \
+    #    ${dockerfile_prefix}/flask_images/settings.py
+
+    #cd ${dockerfile_prefix}/flask_images/
+
+    #mv \
+    #    ${dockerfile_prefix}/flask_images/dependencies.txt \
+    #    ${dockerfile_prefix}/flask_images/requirements.txt
+    docker build \
+        -t "flask_images" \
+        ${dockerfile_prefix}/flask_images/
+    rm /tmp/flask.zip
+    rm -rf /tmp/flask-simple-image-gallery-flask
+}
+flask_images_create() {
+    flask_dir="/home/jack/Pictures/shared/"
+    docker run -it \
+        -p 8585:8080 \
+        -v "$flask_dir:/var/gallery" \
+        --name=${FUNCNAME[2]} \
+        flask_images
+}
+
+
+
+
+docker_service() {
+    name=${FUNCNAME[1]}
+    if [ "$1" == "create" ]; then
+        ${name}_create "$@"
+        return $?
+    fi
+    if [ "$1" == "start" ]; then
+        docker start ${name}
+        return $?
+    fi
+    if [ "$1" == "stop" ]; then
+        docker stop ${name}
+        return $?
+    fi
+    if [ "$1" == "destroy" ]; then
+        docker rm ${name}
+        return $?
+    fi
+    if [ "$1" == "status" ]; then
+        docker ps -a -f name=${name} --format "{{.Status}}"
+        return $?
+    fi
+    if [ "$1" == "build" ]; then
+        ${name}_build "$@"
+        return $?
+    fi
+    echo "usage: ${name} create|start|stop|destroy|status"
+    return 1
+}
+

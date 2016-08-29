@@ -7,13 +7,24 @@ ARG username
 
 RUN apt-get update && apt-get install -y \
     sudo \
-    build-essential \
-    python3-sphinx \
-    python3-setuptools \
+    python3 \
     python3-pip \
+    libglib2.0-dev \
+    libxext-dev \
+    libglu1-mesa-dev \
+    libegl1-mesa-dev \
+    libfontconfig-dev \
+    libxrender-dev \
+    libxi-dev \
+    libsm-dev \
+    libdbus-1-dev \
+    openssh-server \
     && rm -rf /var/lib/apt/lists/*
 
-# Setup our users
+RUN pip3 install pyqt5
+
+RUN service ssh start
+
 # Setup our users
 RUN mkdir -p /home/${username} && \
     useradd --uid ${userID} ${username} && \
@@ -27,4 +38,3 @@ USER ${username}
 WORKDIR /home/${username}
 
 CMD /bin/bash
-
