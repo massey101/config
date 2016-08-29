@@ -5,7 +5,7 @@
 ###############################################################################
 
 
-install_lite=(vim git tmux openssh-server elinks)
+install_lite=(vim git tmux openssh-server elinks trash-cli)
 install_master=(${install_lite[@]} gimp lm-sensors wine python-dev rdesktop)
 install_laptop=(${install_master[@]})
 install_dev=(ckermit colordiff cscope curl dos2unix git-review nfs-common nfs-kernel-server wireshark)

@@ -45,3 +45,5 @@ EDITOR=vim
 ###############################################################################
 export DOCKERDIR=~/.docker
 
+alias rm='echo "Error: Use trash-put."; false'
+alias tp='trash-put'
