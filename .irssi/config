@@ -424,3 +424,4 @@ settings = {
   "irc/core" = { alternate_nick = "massey101_"; };
 };
 logs = { };
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
