@@ -1,0 +1,1 @@
+/home/jack/.irssi/scripts/xchatnickcolor.pl
