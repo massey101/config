@@ -16,6 +16,8 @@
 !.docker
 !.docker/**
 !.vimperatorrc
+!.irssi
+!.irssi/**
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
