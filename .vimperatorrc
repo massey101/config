@@ -17,8 +17,8 @@ set complete=sf
 noremap J <C-d>
 noremap K <C-u>
 " Added moving tabs left and righ
-noremap <C-h> :tabprevious<CR>
-noremap <C-l> :tabnext<CR>
+noremap <C-h> <C-S-Tab>
+noremap <C-l> <C-Tab>
 
 " Press 'C-a' to select all
 noremap <C-a> <C-Home><S-End>
@@ -28,3 +28,7 @@ cnoremap <C-a> <C-Home><S-End>
 
 " Add pinning tabs
 noremap gp :set apptab!<CR>
+
+""" Google docs """
+ignorekeys add -except=<C-h>,<C-l>,<C-S-Tab>,<C-Tab> docs\\.google\\.com
+ignorekeys add -except=<C-h>,<C-l>,<C-S-Tab>,<C-Tab> dilbert\\.com
