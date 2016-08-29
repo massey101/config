@@ -48,6 +48,21 @@ pep8() {
         "$@"
 }
 
+cura() {
+    exportdir=$(pwd)
+    dirname=$(get_basename $exportdir)
+    workingdir="."
+
+    docker run -it \
+        -v "${exportdir}:$HOME/${dirname}" \
+        -w $HOME/${dirname}/${workingdir} \
+        -e DISPLAY=$DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $HOME/.Xauthority:$HOME/.Xauthority
+        cura \
+        "$@"
+}
+
 
 j4mdiag_build() {
     docker build \
