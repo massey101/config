@@ -1,0 +1,18 @@
+#!/bin/bash
+
+source common
+
+# Steam Deps
+info "Installing steam dependencies"
+sudo_run_cmd "apt-get install -y \
+    libgl1-mesa-glx \
+    libgl1-mesa-dev \
+    libgl1-mesa-dri:i386 \
+    libgl1-mesa-glx:i386 \
+    libc6:i386"
+
+# Steam
+info "Installing Steam"
+info "TODO: Add Steam"
+#run_cmd "curl https://steamcdn-a.akamaihd.net/client/installer/steam.deb > /tmp/steam.deb"
+#sudo_run_cmd "dpkg -i /tmp/steam.deb"

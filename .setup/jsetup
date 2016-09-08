@@ -1,212 +1,74 @@
-###############################################################################
-# Install script for a default install
-# Author: Jack Massey
-# Date: 2016-05-18
-###############################################################################
+#!/bin/bash
+
+source common
 
 
-install_lite=(vim git tmux openssh-server elinks trash-cli)
-install_master=(${install_lite[@]} gimp lm-sensors wine python-dev rdesktop)
-install_laptop=(${install_master[@]})
-install_dev=(ckermit colordiff cscope curl dos2unix git-review nfs-common nfs-kernel-server wireshark)
-install_nvidia=(mesa-utils nvidia-current nvidia-settings)
+get_distro() {
+    file="packages/distros"
+    local list=()
+    while read line; do
+        id=$(echo $line | cut -d "," -f 1)
+        name=$(echo $line | cut -d "," -f 2)
+        list+=("$id" "$name" "OFF")
+    done < "$file"
+    local num=$(cat "$file" | wc -l)
+    list[2]="ON"
 
-third_lite=()
-third_master=(dropbox chrome expressvpn messenger slack skype)
-third_laptop=()
-third_dev=(docker)
-third_nvidia=()
-
-myexit() {
-    echo "Error: $@"
-    exit 1
+    dialog \
+        --title "jsetup" \
+        --notags \
+        --radiolist "Please select a distro" $(expr $num + 7) 40 \
+        $num "${list[@]}" \
+        3>&1 1>&2 2>&3
 }
 
-# =============================================================================
-# Configuration
-# =============================================================================
-install=(${install_master[@]} ${install_dev[@]})
-third=(${third_master[@]} ${third_dev[@]})
-swapsize=16
 
-####packages=(lite master laptop dev nvidia)
-####package_helps=(
-####    "Basic installation"
-####    "lite + common applications"
-####    "master + laptop configuration"
-####    "Packages used for my develop environment"
-####    "Packages used for installing nvidia drivers"
-####)
-####
-####usage() {
-####    echo "usage: jsetup [--swap size] [--3rd] package ...
-####
-####Options:
-####    --swap    Size of swapfile in GiB (default 8)
-####    --3rd     Enable third part packages
-####
-####Packages:"
-####    for i in ${!packages[@]}; do
-####        printf '    %-15s %s\n' "${packages[$i]}" "${package_helps[$i]}"
-####    done
-####}
-####
-####badusage() {
-####    usage
-####    exit 1
-####}
-####
-##### Process
-##### Program options
-##### -----------------------------------------------------------------------------
-####install_packages=()
-####third_packages=()
-####install=()
-####third=()
-####third_party=false
-####swapsize=8
-####
-####add_package() {
-####    if [[ " ${packages[@]} " =~ " $1 " ]]; then
-####        install_packages+=("$1")
-####        return 0;
-####    fi
-####    myexit "Package $1 not found."
-####}
-####
-####process() {
-####
-####    while [[ $# -gt 0 ]]; do
-####        case $1 in
-####            ("--swap") swapsize=$2; shift;;
-####            ("--3rd") third_party=true;;
-####            (*) add_package $1;;
-####        esac
-####        shift
-####    done
-####
-####    for package in ${install_packages[@]}; do
-####        echo $package
-####        echo ${install_${package}[@]}
-####        eval install+=(\${install_${package}[@]})
-####    done
-####    if [ third_party == true ]; then
-####        return 0;
-####    fi
-####    for package in third_packages; do
-####        eval third+=(\${third_${package}[@]})
-####    done
-####}
+get_packages() {
+    local list=()
+    while read line; do
+        id=$(echo $line | cut -d "," -f 1)
+        name=$(echo $line | cut -d "," -f 2)
+        list+=("$id" "$name" "OFF")
+    done < "packages/$1/packages"
+    local num=$(cat "packages/$1/packages" | wc -l)
+
+    dialog \
+        --title "jsetup" \
+        --notags \
+        --checklist "Please select packages" $(expr $num + 7) 30 \
+        $num "${list[@]}" \
+        3>&1 1>&2 2>&3
+}
 
 
+main() {
+    sudo -v
 
-#process $@
-#echo "Install Packages: ${install[@]}"
-#echo "Third Party Packages: ${third[@]}"
-#echo "Swapsize: $swapsize"
-#exit 0
+    # Get Distro
+    distro=$(get_distro)
+    if [ $? -ne 0 ]; then
+        echo
+        return 0
+    fi
 
-# ============================================================================
-# ============================================================================
-# Third Party
-# ============================================================================
+    # Get packages
+    packages=$(get_packages $distro)
+    if [ $? -ne 0 ]; then
+        echo
+        return 0
+    fi
 
-# myinstall_docker() {
-#     sudo apt-get update
-#     sudo apt-get install apt-transport-https ca-certificates
-#     sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-# 
-# }
+    # Install packages
+    echo
+    for package in $packages; do
+        echo
+        info "Installing package \"$package\""
+        info "==============================================================================="
+        bash "packages/$distro/$package"
+        if [ $? -ne 0 ]; then
+            error "Error: package $package failed!"
+        fi
+    done
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Prepare for super user usage
-# -----------------------------------------------------------------------------
-sudo -v
-
-
-# Extract our git configurations
-# Grabs the root path, extracts it to /root and ~/ and checks out the lite
-# branch
-# -----------------------------------------------------------------------------
-gitroot=$(git rev-parse --show-toplevel)
-if [[ "$(basename \"${gitroot}\")" != "config" ]]; then
-    myexit "Script not contained in valid git directory"
-fi
-cp -r "${gitroot}/.*" "~/"
-sudo cp -r "${gitroot}/.*" "/root/"
-cd "/root"
-git checkout lite
-cd "~/"
-git checkout lite
-
-
-# Create swapfile
-# -----------------------------------------------------------------------------
-sudo dd if=/dev/zero of=/swapfile bs=1024 count=65536
-sudo chmod 0600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-sudo echo "/swapfile swap swap defaults 0 0" >> /etc/fstab
-
-
-
-# Upgrade the system
-# -----------------------------------------------------------------------------
-sudo apt-get update || myexit "Failed to update"
-sudo apt-get upgrade || myexit "Failed to upgrade"
-
-
-# Install applications
-# -----------------------------------------------------------------------------
-sudo apt-get install ${install[@]}
-
-
-# Install third party
-# -----------------------------------------------------------------------------
-# TODO implement this
-
-
-
-# Setup gnome
-# -----------------------------------------------------------------------------
-echo "Extensions:
-    Alternate Tab
-    Impatiance
-    Launch New Instance
-    Native window placement
-    No topleft hotcorner
-    Redmine Issues
-    Skype integration
-    Topicons
-    Gtile
-"
-echo "Settings:
-Make caps lock an additional escape
-"
-
-
-
-
-
-
-
-
-
-
-
-
-
-echo "Please install the third party applications: ${third[@]}"
+main $@

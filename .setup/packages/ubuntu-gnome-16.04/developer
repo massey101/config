@@ -1,0 +1,22 @@
+#!/bin/bash
+
+source common
+
+# Dev
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    build-essential \
+    ckermit \
+    colordiff \
+    cscope \
+    curl \
+    dos2unix \
+    git-review \
+    nfs-common \
+    nfs-kernel-server \
+    wireshark \
+    curl"
+
+# Docker
+info "Installing Docker"
+info "TODO: Add docker"

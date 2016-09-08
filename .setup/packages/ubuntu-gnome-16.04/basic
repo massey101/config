@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source common
+
+# Basic
+info "Installing Basic packages"
+sudo_run_cmd "apt-get install -y \
+    git \
+    vim \
+    tmux \
+    elinks \
+    openssh-server \
+    trash-cli"

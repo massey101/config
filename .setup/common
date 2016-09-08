@@ -1,0 +1,70 @@
+#!/bin/bash
+
+add_to_array() {
+    if [ "$1" == "" ]; then
+        echo "Error: \"$1\" invalid" >&2
+        return 1
+    fi
+
+    if [ "$1" == "[]" ]; then
+        echo "['$2']"
+        return 0
+    fi
+    echo "$1" | sed -e "s/]$/,'$2']/"
+}
+
+# Colours
+BLACK="\e[30m"
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m"
+MAGENTA="\e[35m"
+CYAN="\e[36m"
+LGRAY="\e[37m"
+DGRAY="\e[90m"
+LRED="\e[91m"
+LGREEN="\e[92m"
+LYELLOW="\e[93m"
+LBLUE="\e[94m"
+LMAGENTA="\e[95m"
+LCYAN="\e[96m"
+WHITE="\e[97m"
+
+# Special
+BOLD="\e[1m"
+DIM="\e[2m"
+UNDERLINE="\e[4m"
+
+RESET="\e[0m"
+
+# Available actions
+info() {
+    echo -e $YELLOW"$@"$RESET
+}
+
+warning() {
+    echo -e $MAGENTA"$@"$RESET
+}
+
+error() {
+    echo -e $RED"$@"$RESET
+    exit 1
+}
+
+run_cmd() {
+    echo -e $CYAN"$1"$RESET
+    bash -c "$1"
+    if [ $? -ne 0 ]; then
+        #error "Command failed!"
+        echo "error"
+    fi
+}
+
+sudo_run_cmd() {
+    echo -e $LCYAN"sudo $1"$RESET
+    sudo bash -c "$1"
+    if [ $? -ne 0 ]; then
+        error "Command failed!"
+    fi
+}

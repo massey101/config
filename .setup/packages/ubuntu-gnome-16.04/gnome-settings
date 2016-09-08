@@ -1,0 +1,21 @@
+#!/bin/bash
+
+source common
+
+# Make Caps an additional Esc
+info "Making Caps an additional Esc"
+run_cmd "gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:escape']\""
+
+# Keyboard repeat
+info "Setting Keyboard options"
+run_cmd "gsettings set org.gnome.desktop.peripherals.keyboard delay 260"
+run_cmd "gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 14"
+
+# Mouse
+info "Setting Mouse options"
+run_cmd "gsettings set org.gnome.desktop.peripherals.mouse speed 0.22222"
+
+# Gnome Extensions
+info "Installing Extensions"
+info "TODO: Add extensions"
+
