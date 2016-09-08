@@ -22,6 +22,8 @@
 !.config/darktable
 !.config/darktable/darktablerc
 !.config/darktable/keyboardrc
+!.config/touchegg
+!.config/touchegg/**
 
 
 # Ignore these files anyway

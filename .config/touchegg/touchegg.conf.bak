@@ -1,0 +1,45 @@
+<touchégg>
+
+    <settings>
+        <property name="composed_gestures_time">0</property>
+    </settings>
+
+    <application name="All">
+        <gesture type="TAP" fingers="1" direction="">
+	    <action when="AT_START" type="MOUSE_CLICK">BUTTON=1</action>
+	</gesture>
+        <gesture type="TAP" fingers="2" direction="">
+	    <action when="AT_START" type="MOUSE_CLICK">BUTTON=3</action>
+	</gesture>
+	<gesture type="DRAG" fingers="2" direction="ALL">
+	    <action when="AT_START" type="SCROLL">SPEED=5:INVERTED=true</action>
+	</gesture>
+
+	<gesture type="TAP" fingers="4" direction="">
+            <action when="AT_START" type="SEND_KEYS">Super</action>
+        </gesture>
+        <gesture type="DRAG" fingers="4" direction="RIGHT">
+	    <action when="AT_START" type="SEND_KEYS">Control+Shift+Tab</action>
+	</gesture>
+        <gesture type="DRAG" fingers="4" direction="LEFT">
+	    <action when="AT_START" type="SEND_KEYS">Control+Tab</action>
+	</gesture>
+        <gesture type="DRAG" fingers="4" direction="UP">
+	    <action when="AT_START" type="SEND_KEYS">Control+Alt+Down</action>
+	</gesture>
+        <gesture type="DRAG" fingers="4" direction="DOWN">
+	    <action when="AT_START" type="SEND_KEYS">Control+Alt+Up</action>
+	</gesture>
+        <gesture type="DRAG" fingers="3" direction="ALL">
+	    <action when="AT_START" type="DRAG_AND_DROP">BUTTON=1</action>
+	</gesture>
+        <gesture type="DRAG" fingers="5" direction="UP">
+	    <action when="AT_START" type="SEND_KEYS">Control+Alt+Shift+Up</action>
+	</gesture>
+        <gesture type="DRAG" fingers="5" direction="DOWN">
+	    <action when="AT_START" type="SEND_KEYS">Control+Alt+Shift+Down</action>
+	</gesture>
+
+    </application>
+
+</touchégg>
