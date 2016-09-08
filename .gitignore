@@ -18,6 +18,11 @@
 !.vimperatorrc
 !.irssi
 !.irssi/**
+!.config
+!.config/darktable
+!.config/darktable/darktablerc
+!.config/darktable/keyboardrc
+
 
 # Ignore these files anyway
 .emacs.d/auto-save-list
