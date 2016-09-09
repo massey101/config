@@ -1,0 +1,49 @@
+#!/bin/bash
+
+if [ ! -d "$HOME/.installed" ]; then
+    mkdir -p "$HOME/.installed"
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to create $HOME/.installed. Please fix"
+        exit 1
+    fi
+fi
+
+apt-get $@
+ret=$?
+if [ $ret -ne 0 ]; then
+    exit $ret
+fi
+
+apt_command="$1"
+shift
+
+fake=false
+while [[ "$1" == "-"* ]]; do
+    case "$1" in
+        -d|--download-only) fake=true;;
+        -s|--simulate) fake=true;;
+        --dry-run) fake=true;;
+        --recon) fake=true;;
+        --no-act) fake=true;;
+        *);;
+    esac
+    shift
+done
+
+if $fake; then
+    exit $ret
+fi
+
+while [ "$1" != "" ]; do
+    if [ "$apt_command" == "install" ]; then
+        echo "Recording instilation of $1"
+        date > "$HOME/.installed/$1"
+    fi
+
+    if [ "$apt_command" == "remove" ] || [ "$apt_command" == "purge" ]; then
+        echo "Recording removal of $1"
+        rm "$HOME/.installed/$1"
+    fi
+    shift
+done
+
