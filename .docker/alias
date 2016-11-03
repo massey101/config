@@ -150,6 +150,29 @@ flask_images_create() {
         flask_images
 }
 
+pyqt5() { docker_service "$@"; }
+pyqt5_build() {
+    docker build \
+        -t "mypyqt5" \
+        --build-arg userID=$UID \
+        --build-arg username=$USER \
+         ${dockerfile_prefix}/mypyqt5
+}
+
+pyqt5_create() {
+    shift
+    flask_dir="/home/jack/Pictures/shared/"
+    docker run -it \
+        --rm \
+        -p 8585:8080 \
+        -v "$PWD:/exported" \
+        -w "/exported" \
+        -e DISPLAY=$DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $HOME/.Xauthority:$HOME/.Xauthority \
+        mypyqt5 \
+        $@
+}
 
 
 

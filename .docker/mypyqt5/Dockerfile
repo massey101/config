@@ -19,9 +19,10 @@ RUN apt-get update && apt-get install -y \
     libsm-dev \
     libdbus-1-dev \
     openssh-server \
+    python3-pyqt5 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install pyqt5
+RUN pip3 install pyqt5 netifaces
 
 RUN service ssh start
 
