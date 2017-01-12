@@ -56,8 +56,7 @@ run_cmd() {
     echo -e $CYAN"$1"$RESET
     bash -c "$1"
     if [ $? -ne 0 ]; then
-        #error "Command failed!"
-        echo "error"
+        error "Command failed!"
     fi
 }
 
