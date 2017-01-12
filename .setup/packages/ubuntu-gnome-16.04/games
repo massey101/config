@@ -16,3 +16,8 @@ info "Installing Steam"
 info "TODO: Add Steam"
 #run_cmd "curl https://steamcdn-a.akamaihd.net/client/installer/steam.deb > /tmp/steam.deb"
 #sudo_run_cmd "dpkg -i /tmp/steam.deb"
+
+# Linux games
+sudo_run_cmd "apt-get install -y \
+    frotz \
+    nexuiz"

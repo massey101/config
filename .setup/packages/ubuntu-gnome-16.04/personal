@@ -11,7 +11,8 @@ sudo_run_cmd "apt-get install -y \
     lm-sensors \
     rdesktop \
     chromium-browser \
-    curl"
+    curl \
+    jitsi"
 
 # Expressvpn
 info "Installing ExpressVPN"
