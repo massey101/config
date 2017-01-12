@@ -63,5 +63,5 @@ alias sudo="sudo "
 ###############################################################################
 # Setup apt-get recorder
 ###############################################################################
-alias mycscope="cscope-Rbq"
-alias mykcscope="cscope-Rbqk"
+alias mycscope="cscope -Rbq"
+alias mykcscope="cscope -Rbqk"
