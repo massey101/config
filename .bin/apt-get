@@ -8,7 +8,7 @@ if [ ! -d "$HOME/.installed" ]; then
     fi
 fi
 
-apt-get $@
+/usr/bin/apt-get $@
 ret=$?
 if [ $ret -ne 0 ]; then
     exit $ret
