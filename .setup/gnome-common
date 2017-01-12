@@ -1,0 +1,87 @@
+#!/bin/bash
+
+extension_path="$HOME/.local/share/gnome-shell/extensions"
+
+gnome_version=$( gnome-shell --version 2> /dev/null |
+sed -n "s/^.* \([0-9]\+\.[0-9]\+\).*$/\1/p" )
+
+enable_extension() {
+    local out=$(gnome-shell-extension-tool --enable-extension="$2" 2>&1)
+    sed -n "s/^'.*' is\( now\)\?\(.*\)\.$/[$1] Extension\2/p" <<< "$out"
+}
+
+extract_extension() {
+    mkdir -p "$extension_path/$2"
+    echo "[$1] Extracting extension"
+    unzip -qq -o "/tmp/shell-${3}-extension-install.${4}.zip" -d "$extension_path/${2}"
+}
+
+
+download_info() {
+    local extension_info=$(curl -Lfs "https://extensions.gnome.org/extension-info/?pk=$1&shell_version=$2")
+    result=$?
+    if [ $result -ne 0 ]; then
+        echo "Error: Failed to download extension info" 1>&2
+        return $result
+    fi
+    echo "$extension_info"
+    return 0
+}
+
+extract_info() {
+    EXTENSION_NAME=$( sed 's/^.*\"name\"[: \"]*\([^\"]*\).*$/\1/' <<< "$1" )
+    EXTENSION_DESCRIPTION=$( sed 's/^.*\"description\": \"//g' <<< "$1" | \
+        sed 's/\", \"[a-z]\+\".*$//g' | \
+        sed 's/\\\"/\"/g' )
+    EXTENSION_CREATOR=$( sed 's/^.*\"creator\"[: \"]*\([^\"]*\).*$/\1/' <<< "$1" )
+    EXTENSION_UUID=$( sed 's/^.*\"uuid\"[: \"]*\([^\"]*\).*$/\1/' <<< "$1" )
+    EXTENSION_ID=$( sed 's/^.*\"pk\"[: \"]*\([^\"]*\),.*$/\1/' <<< "$1" )
+    EXTENSION_LINK=$( sed 's/^.*\"link\"[: \"]*\([^\"]*\).*$/\1/' <<< "$1" )
+    EXTENSION_URL=$( grep "download_url" <<< "$1" | \
+        sed 's/^.*\"download_url\"[: \"]*\([^\"]*\).*$/\1/' )
+    EXTENSION_VERSIONS=($( sed 's/[\"]*:[ ]*{[\"]*pk[\"]*:/\n/g' <<< "$1" | \
+        sed '$ d' | sed 's/^.*\"//g' | sort -rV ))
+}
+
+check_version_unavailability() {
+    local ver=$1
+    shift 1
+    for version in $@; do
+        if [ "$version" == "$ver" ]; then
+            return 1
+        fi
+    done
+    return 0
+}
+
+download_version() {
+    local tag=$( sed "s/^.*$2\": {\"pk[\": ]*\([^\"]*\),.*$/\1/" <<< "$1" )
+    echo "[$4] Downloading extension"
+    curl -Lfs -o "/tmp/shell-${2}-extension-install.${3}.zip" \
+        "https://extensions.gnome.org/$EXTENSION_URL"
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to download extension"
+        return 1
+    fi
+    return 0
+}
+
+
+install_extension() {
+    echo "[$1] Obtaining extension info"
+    local extension_info=$(download_info $2 $3) || return $?
+
+    extract_info "$extension_info"
+
+    if check_version_unavailability "$3" ${EXTENSION_VERSIONS[@]}; then
+        echo "Extension $EXTENSION_NAME not available for $3"
+        return 1
+    fi
+
+    download_version "$extension_info" "$3" "$2" "$1" || return $?
+    extract_extension "$EXTENSION_NAME" "$EXTENSION_UUID" "$3" "$2" || return $?
+    enable_extension "$EXTENSION_NAME" "$EXTENSION_UUID" || return $?
+    return 0
+}
+
+
