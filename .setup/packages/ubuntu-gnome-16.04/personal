@@ -12,7 +12,10 @@ sudo_run_cmd "apt-get install -y \
     rdesktop \
     chromium-browser \
     curl \
-    jitsi"
+    jitsi \
+    encfs \
+    smplayer \
+    ubuntu-restricted-extras"
 
 # Expressvpn
 info "Installing ExpressVPN"
