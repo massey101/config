@@ -15,7 +15,6 @@ sudo_run_cmd "apt-get install -y \
     nfs-common \
     nfs-kernel-server \
     wireshark \
-    curl \
     gstreamer-tools \
     libncurses5-dev \
     libncursesw5-dev \
