@@ -1,0 +1,8 @@
+#!/bin/bash
+
+source common
+
+# Make Caps an additional Esc
+info "Setting scaling"
+run_cmd "gsettings set org.gnome.desktop.interface text-scaling-factor 1.3"
+
