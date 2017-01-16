@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source common
+
+# Personal
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    irssi \
+    keepassx \
+    nautilus-dropbox \
+    lm-sensors \
+    rdesktop \
+    chromium-browser \
+    curl \
+    encfs \
+    smplayer \
+    ubuntu-restricted-extras"
+
+# Expressvpn
+info "Installing ExpressVPN"
+run_cmd "curl -L -o /tmp/expressvpn.deb https://download.expressvpn.xyz/clients/linux/expressvpn_1.1.0_amd64.deb"
+sudo_run_cmd "dpkg -i /tmp/expressvpn.deb || apt-get install -f -y"
+
+# Messenger
+info "Installing Messenger"
+run_cmd "curl -L -o /tmp/messenger.deb https://github.com/Aluxian/Facebook-Messenger-Desktop/releases/download/v1.4.3/Messenger_linux64.deb"
+sudo_run_cmd "dpkg -i /tmp/messenger.deb || apt-get install -f -y"
+
+# Slack
+info "Installing Slack"
+run_cmd "curl -L -o /tmp/slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-2.1.2-amd64.deb"
+sudo_run_cmd "dpkg -i /tmp/slack.deb || apt-get install -f -y"
+
+

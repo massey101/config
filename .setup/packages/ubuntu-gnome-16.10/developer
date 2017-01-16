@@ -1,0 +1,32 @@
+#!/bin/bash
+
+source common
+
+# Dev
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    build-essential \
+    ckermit \
+    colordiff \
+    cscope \
+    curl \
+    dos2unix \
+    git-review \
+    nfs-common \
+    nfs-kernel-server \
+    wireshark \
+    libncurses5-dev \
+    libncursesw5-dev \
+    nfs-kernel-server \
+    nmap \
+    python3-pip \
+    python3-pyqt5 \
+    python3-virtualenv \
+    virtualenv \
+    pep8 \
+    tftp-server \
+    whois"
+
+# Docker
+info "Installing Docker"
+info "TODO: Add docker"

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source common
+
+# Virtual Machines
+info "Installing Virtual Machines"
+sudo_run_cmd "apt-get install -y \
+    qemu-kvm \
+    libvirt-bin \
+    bridge-utils \
+    virt-manager"
+sudo_run_cmd "adduser $USER libvirtd"
