@@ -7,7 +7,7 @@ info "Installing packages"
 sudo_run_cmd "apt-get install -y \
     irssi \
     keepassx \
-    dropbox \
+    nautilus-dropbox \
     lm-sensors \
     rdesktop \
     chromium-browser \

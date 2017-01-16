@@ -7,7 +7,7 @@ source common
 sudo_run_cmd "apt-get install -y \
     mesa-utils \
     nvidia-settings \
-    nvidia-361"
+    nvidia-367"
 
 sudo_run_cmd "apt-get install -y \
     bumblebee \
