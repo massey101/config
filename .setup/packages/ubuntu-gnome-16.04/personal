@@ -12,7 +12,6 @@ sudo_run_cmd "apt-get install -y \
     rdesktop \
     chromium-browser \
     curl \
-    jitsi \
     encfs \
     smplayer \
     ubuntu-restricted-extras"
