@@ -9,4 +9,4 @@ sudo_run_cmd "apt-get install -y \
     libvirt-bin \
     bridge-utils \
     virt-manager"
-sudo_run_cmd "adduser $USER libvirtd"
+sudo_run_cmd "adduser $USER libvirt"
