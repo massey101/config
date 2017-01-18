@@ -51,6 +51,8 @@ run_cmd "gsettings set $default scrollbar-policy 'never'"
 info "Installing Extensions"
 
 source gnome-common
+sudo_run_cmd "apt-get install -y \
+    curl"
 
 enable_extension "AlternateTab" "alternate-tab@gnome-shell-extensions.gcampax.github.com"
 enable_extension "Launch new instance" "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
