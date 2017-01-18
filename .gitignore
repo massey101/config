@@ -19,9 +19,6 @@
 !.irssi
 !.irssi/**
 !.config
-!.config/darktable
-!.config/darktable/darktablerc
-!.config/darktable/keyboardrc
 !.config/touchegg
 !.config/touchegg/**
 
