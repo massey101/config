@@ -31,4 +31,7 @@ info "Installing Slack"
 run_cmd "curl -L -o /tmp/slack.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-2.1.2-amd64.deb"
 sudo_run_cmd "dpkg -i /tmp/slack.deb || apt-get install -f -y"
 
-
+# Bluetooth
+info "Preparing bluetooth for A2DP"
+sudo_run_cmd "sed -i.bak 's/load-module module-bluetooth-discover/#load-module module-bluetooth-discover/g' /etc/pulse/default.pa"
+sudo_run_cmd "sed -i.bak $'s/^fi/    \/usr\/bin\/pactl load-module module-bluetooth-discover\\\nfi/g' /usr/bin/start-pulseaudio-x11"
