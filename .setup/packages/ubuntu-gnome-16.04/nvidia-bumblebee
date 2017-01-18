@@ -33,7 +33,8 @@ sudo_run_cmd "echo blacklist nvidia-experimental-370 >> /etc/modprobe.d/bumblebe
 
 # Configure bumblebee
 info "Configuring Bumblebee"
+sudo_run_cmd "sed -i.bak 's/^Driver=$/Driver=nvidia/g' /etc/bumblebee/bumblebee.conf"
+sudo_run_cmd "sed -i.bak 's/^KernelDriver=nvidia$/KernelDriver=nvidia-370/g' /etc/bumblebee/bumblebee.conf"
 sudo_run_cmd "sed -i.bak 's/nvidia-current/nvidia-370/g' /etc/bumblebee/bumblebee.conf"
-sudo_run_cmd "sed -i.bak 's/Driver=/Driver=nvidia/g' /etc/bumblebee/bumblebee.conf"
 sudo_run_cmd "gpasswd -a $USER bumblebee"
 sudo_run_cmd "systemctl enable bumblebeed"
