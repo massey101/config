@@ -4,13 +4,36 @@ source common
 
 # Nvidia
 
-sudo_run_cmd "apt-get install -y \
-    mesa-utils \
-    nvidia-settings \
-    nvidia-367"
+# Switch to intel gpu as default
+info "Switching to intel gpu as default"
+sudo_run_cmd "prime-select intel"
 
+# Install latest bumblebee
+info "Installing the latest bumblebee from ppa:bumblebee/testing"
+sudo_run_cmd "add-apt-repository -y ppa:bumblebee/testing"
+sudo_run_cmd "apt-get update"
 sudo_run_cmd "apt-get install -y \
     bumblebee \
     bumblebee-nvidia \
     primus \
-    linux-headers-generic"
+    nvidia-settings \
+    nvidia-370"
+
+# Add kernel modules for boot
+info "Adding the kernel modules to be loaded at boot"
+sudo_run_cmd "echo i915 >> /etc/modules"
+sudo_run_cmd "echo bbswitch >> /etc/modules"
+
+# Blacklist nvidia
+info "Blacklisting nvidia"
+sudo_run_cmd "echo \\# 370 >> /etc/modprobe.d/bumblebee.conf"
+sudo_run_cmd "echo blacklist nvidia-370 >> /etc/modprobe.d/bumblebee.conf"
+sudo_run_cmd "echo blacklist nvidia-370-updates >> /etc/modprobe.d/bumblebee.conf"
+sudo_run_cmd "echo blacklist nvidia-experimental-370 >> /etc/modprobe.d/bumblebee.conf"
+
+# Configure bumblebee
+info "Configuring Bumblebee"
+sudo_run_cmd "sed -i.bak 's/nvidia-current/nvidia-370/g' /etc/bumblebee/bumblebee.conf"
+sudo_run_cmd "sed -i.bak 's/Driver=/Driver=nvidia/g' /etc/bumblebee/bumblebee.conf"
+sudo_run_cmd "gpasswd -a $USER bumblebee"
+sudo_run_cmd "systemctl enable bumblebeed"

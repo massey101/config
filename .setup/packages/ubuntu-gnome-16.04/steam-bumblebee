@@ -1,0 +1,16 @@
+#!/bin/bash
+
+source common
+
+# Steam Deps
+info "Installing steam dependency lib32stdc++6"
+sudo_run_cmd "apt-get install -y lib32stdc++6"
+
+info "Forcing steam to use lib32stdc++6"
+run_cmd "mkdir ~/.steam/backup"
+run_cmd "mkdir ~/.steam/backup/32"
+run_cmd "mkdir ~/.steam/backup/64"
+run_cmd "mv ~/.steam/steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libstdc++.so.6 ~/.steam/backup/32/"
+run_cmd "ln -fs /usr/lib32/libstdc++.so.6 ~/.steam/steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libstdc++.so.6"
+run_cmd "mv ~/.steam/steam/ubuntu12_32/steam-runtime/amd64/usr/lib/x86_64-linux-gnu/libstdc++.so.6 ~/.steam/backup/64/"
+run_cmd "ln -fs /usr/lib32/libstdc++.so.6 ~/.steam/steam/ubuntu12_32/steam-runtime/amd64/usr/lib/x86_64-linux-gnu/libstdc++.so.6"

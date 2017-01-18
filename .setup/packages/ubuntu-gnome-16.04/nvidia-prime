@@ -1,0 +1,12 @@
+#!/bin/bash
+
+source common
+
+# Nvidia
+info "Installing nvidia-prime from graphics-drivers/ppa"
+sudo_run_cmd "apt-add-repository -y ppa:graphics-drivers/ppa"
+sudo_run_cmd "apt-get update"
+sudo_run_cmd "apt-get -y dist-upgrade"
+sudo_run_cmd "apt-get install -y \
+    nvidia-prime \
+    nvidia-370"
