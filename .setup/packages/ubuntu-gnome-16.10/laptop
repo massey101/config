@@ -1,8 +1,0 @@
-#!/bin/bash
-
-source common
-
-# Laptop
-info "Installing packages"
-sudo_run_cmd "apt-get install -y \
-    touchegg"
