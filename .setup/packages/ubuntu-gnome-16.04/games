@@ -13,6 +13,10 @@ sudo_run_cmd "apt-get install -y \
 
 # Steam
 info "Installing Steam"
-info "TODO: Add Steam"
 run_cmd "curl -L -o /tmp/steam.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
 sudo_run_cmd "dpkg -i /tmp/steam.deb || apt-get install -f -y"
+
+# Controller
+info "Installing xboxdrv"
+sudo_run_cmd "apt-get install -y \
+    xboxdrv"
