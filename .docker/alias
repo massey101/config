@@ -206,3 +206,17 @@ docker_service() {
     return 1
 }
 
+
+docker_project() {
+    if [ "$1" == "" ]; then
+        echo "usage: docker_project name"
+        return 1
+    fi
+    if [ -e "$1" ]; then
+        echo "error: '$1' already exists"
+        return 2
+    fi
+    echo "Generating project..."
+    cp -r ${dockerfile_prefix}/example_docker $1
+    echo "Done."
+}
