@@ -21,7 +21,7 @@ sudo_run_cmd "apt-get install -y \
 
 # Expressvpn
 info "Installing ExpressVPN"
-run_cmd "curl -L -o /tmp/expressvpn.deb https://download.expressvpn.xyz/clients/linux/expressvpn_1.1.0_amd64.deb"
+run_cmd "curl -L -o /tmp/expressvpn.deb https://download.expressvpn.xyz/clients/linux/expressvpn_1.2.0_amd64.deb"
 sudo_run_cmd "dpkg -i /tmp/expressvpn.deb || apt-get install -f -y"
 
 # Google Chrome
