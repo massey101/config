@@ -9,4 +9,11 @@ sudo_run_cmd "apt-get install -y \
     libvirt-bin \
     bridge-utils \
     virt-manager"
+
 sudo_run_cmd "adduser $USER libvirtd"
+sudo_run_cmd "mkdir /usr/libexex"
+sudo_run_cmd "cp /usr/lib/qemu/qemu-bridge-helper /usr/libexec/"
+sudo_run_cmd "chmod u+s /usr/libexec/qemu-bridge-helper"
+sudo_run_cmd "chmod u+s /usr/lib/qemu/qemu-bridge-helper"
+sudo_run_cmd "ln -s /etc/apparmor.d/usr.sbin.libvirtd /etc/apparmor.d/disable/"
+sudo_run_cmd "apparmor_parser -R /etc/apparmor.d/usr.sbin.libvirtd"
