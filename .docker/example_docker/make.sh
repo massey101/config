@@ -45,7 +45,7 @@ docker_build() {
 
 get_docker() {
     if [[ docker/Dockerfile -nt ${docker_ver} ]]; then
-        docker_build
+        docker_build 1>&2 || return 2
     fi
     get_docker_version
 }
@@ -53,7 +53,7 @@ get_docker() {
 run_in_docker() {
     exportdir=$(pwd)/build
     dirname=$(get_basename $exportdir)
-    ver=$(get_docker)
+    ver=$(get_docker) || return 2
 
     docker run -it \
         -u "$USER:$USER" \
@@ -67,7 +67,7 @@ run_in_docker() {
 root_in_docker() {
     exportdir=$(pwd)/build
     dirname=$(get_basename $exportdir)
-    ver=$(get_docker)
+    ver=$(get_docker) || return 2
 
     docker run -it \
         -v "${exportdir}:/${dirname}" \
