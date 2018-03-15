@@ -84,6 +84,16 @@ call vam#ActivateAddons(['color-schemes'])
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Vim Go                                                                 """
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call vam#ActivateAddons(['vim-go'])
+autocmd Filetype go setlocal noexpandtab
+autocmd Filetype go setlocal tabstop=4
+autocmd Filetype go setlocal shiftwidth=4
+autocmd Filetype go setlocal softtabstop=4
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Task Juggler                                                           """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 :hi Folded ctermbg=022
