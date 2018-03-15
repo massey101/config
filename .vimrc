@@ -92,7 +92,7 @@ call vam#ActivateAddons(['color-schemes'])
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" My Hardcore Mode                                                           """
+""" My Hardcore Mode                                                       """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nnoremap <Up> <Nop>
 " nnoremap <Down> <Nop>
