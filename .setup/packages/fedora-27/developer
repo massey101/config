@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source common
+
+# Dev
+info "Installing packages"
+sudo_run_cmd "dnf install -y \
+    colordiff \
+    dos2unix \
+    whois \
+    python3-jedi"
+
+# Docker
+info "Installing Docker"
+info "TODO: Add docker"
