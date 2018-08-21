@@ -26,7 +26,8 @@ sudo_run_cmd "apt-get install -y \
     virtualenv \
     pep8 \
     tftp-server \
-    whois"
+    whois \
+    python3-jedi"
 
 # Docker
 info "Installing Docker"

@@ -84,6 +84,14 @@ call vam#ActivateAddons(['color-schemes'])
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Jedi Vim
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call vam#ActivateAddons(['jedi-vim'])
+let g:jedi#force_py_version=3
+autocmd FileType python setlocal completeopt-=preview
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Vim Go                                                                 """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vam#ActivateAddons(['vim-go'])
