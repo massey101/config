@@ -18,6 +18,9 @@ if [ -n "$TMUX" ]; then
 
     # Override our prompt to keep us updated with the cwd
     PS1='$(tmux set-environment TMUX_$(echo $TMUX_PANE | tr -d '%')_PATH "$PWD")'$PS1
+
+    # Fix bug in fedora where the wrong escape character is used in the prompt
+    PROMPT_COMMAND=$(echo "$PROMPT_COMMAND" | sed "s/033k/033]0;/g" )
 fi
 
 
