@@ -12,3 +12,8 @@ sudo_run_cmd "dnf install -y \
     openssh-server \
     trash-cli \
     ctags-etags"
+
+# Installing Vundle
+info "Installing Vundle for Vim"
+run_cmd "mkdir -p ~/.vim/bundle"
+run_cmd "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"

@@ -11,3 +11,8 @@ sudo_run_cmd "apt-get install -y \
     elinks \
     openssh-server \
     trash-cli"
+
+# Installing Vundle
+info "Installing Vundle for Vim"
+run_cmd "mkdir -p ~/.vim/bundle"
+run_cmd "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
