@@ -115,6 +115,7 @@ call vam#ActivateAddons(['taglist'])
 """ Vim Color Schemes                                                      """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vam#ActivateAddons(['color-schemes'])
+colorscheme massey
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
