@@ -8,7 +8,14 @@ sudo_run_cmd "dnf install -y \
     colordiff \
     dos2unix \
     whois \
-    python3-jedi"
+    python3-jedi \
+    ImageMagick \
+    asciio \
+    chromium \
+    dia \
+    gitg \
+    nmap \
+    whois"
 
 # Docker
 info "Installing Docker"
