@@ -122,7 +122,7 @@ colorscheme massey
 """ Jedi Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call vam#ActivateAddons(['jedi-vim'])
-let g:jedi#force_py_version=3
+" let g:jedi#force_py_version=3
 autocmd FileType python setlocal completeopt-=preview
 
 
