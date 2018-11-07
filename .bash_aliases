@@ -4,6 +4,8 @@
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.bin_jacq:$PATH
 
+## PS1="\e[92m\u@\h\e[0m:\e[94m\w\e[0m\\$ "
+
 
 ###############################################################################
 # tmux options
