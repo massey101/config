@@ -83,5 +83,3 @@ install_extension() {
     enable_extension "$EXTENSION_NAME" "$EXTENSION_UUID" || return $?
     return 0
 }
-
-
