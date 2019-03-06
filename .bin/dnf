@@ -1,0 +1,47 @@
+#!/bin/bash
+
+HOME="/home/$USER/"
+
+if [ ! -d "$HOME/.installed" ]; then
+    mkdir -p "$HOME/.installed"
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to create $HOME/.installed. Please fix"
+        exit 1
+    fi
+fi
+
+/usr/bin/dnf $@
+ret=$?
+if [ $ret -ne 0 ]; then
+    exit $ret
+fi
+
+dnf_command="$1"
+shift
+
+fake=false
+while [[ "$1" == "-"* ]]; do
+    case "$1" in
+        --downloadonly) fake=true;;
+        *);;
+    esac
+    shift
+done
+
+if $fake; then
+    exit $ret
+fi
+
+while [ "$1" != "" ]; do
+    if [ "$dnf_command" == "install" ]; then
+        echo "Recording installation of $1"
+        date > "$HOME/.installed/$1"
+    fi
+
+    if [ "$dnf_command" == "remove" ] || [ "$dnf_command" == "purge" ]; then
+        echo "Recording removal of $1"
+        rm "$HOME/.installed/$1"
+    fi
+    shift
+done
+

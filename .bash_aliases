@@ -64,6 +64,7 @@ alias tp='trash-put'
 # Setup apt-get recorder
 ###############################################################################
 alias apt-get="$HOME/.bin/apt-get"
+alias dnf="$HOME/.bin/dnf"
 alias sudo="sudo "
 
 
