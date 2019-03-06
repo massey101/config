@@ -36,7 +36,7 @@ fi
 
 while [ "$1" != "" ]; do
     if [ "$apt_command" == "install" ]; then
-        echo "Recording instilation of $1"
+        echo "Recording installation of $1"
         date > "$HOME/.installed/$1"
     fi
 
