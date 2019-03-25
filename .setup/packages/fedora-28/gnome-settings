@@ -19,6 +19,7 @@ run_cmd "gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 14
 
 info "Setting Mouse options"
 run_cmd "gsettings set org.gnome.desktop.peripherals.mouse speed 0.22222"
+run_cmd "gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'"
 
 info "Setting Monospace Font"
 run_cmd "gsettings set org.gnome.desktop.interface monospace-font-name 'Liberation Mono 11'"
@@ -52,13 +53,14 @@ run_cmd "gsettings set \
 :/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom100/ binding \
     '<Primary><Alt>t'"
 
-info "Setting mouse profile"
-run_cmd "gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'"
-
 info "Setting topbar to show seconds, date and battery percentage"
 run_cmd "gsettings set org.gnome.desktop.interface clock-show-date true"
 run_cmd "gsettings set org.gnome.desktop.interface clock-show-seconds true"
 run_cmd "gsettings set org.gnome.desktop.interface show-battery-percentage true"
+
+info "Setting calculator to programming mode"
+run_cmd "gsettings set org.gnome.calculator button-mode programming"
+
 
 # Terminal Settings
 
