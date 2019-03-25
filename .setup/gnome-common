@@ -66,7 +66,6 @@ download_version() {
     return 0
 }
 
-
 install_extension() {
     echo "[$1] Obtaining extension info"
     local extension_info=$(download_info $2 $3) || return $?
@@ -82,4 +81,10 @@ install_extension() {
     extract_extension "$EXTENSION_NAME" "$EXTENSION_UUID" "$3" "$2" || return $?
     enable_extension "$EXTENSION_NAME" "$EXTENSION_UUID" || return $?
     return 0
+}
+
+record_settings() {
+    echo "Saving gsettings"
+    date_now=$(date +%FT%X)
+    gsettings list-recursively | sort > .gsettings_$date_now.sorted
 }

@@ -101,3 +101,5 @@ install_extension "Todo.txt" 570 $gnome_version
 install_extension "TopIcons" 495 $gnome_version
 install_extension "gTile" 28 $gnome_version
 
+info "Saving gsettings"
+record_settings
