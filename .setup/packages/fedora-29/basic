@@ -1,0 +1,19 @@
+#!/bin/bash
+
+source common
+
+# Basic
+info "Installing Basic packages"
+sudo_run_cmd "dnf install -y \
+    git \
+    vim \
+    tmux \
+    elinks \
+    openssh-server \
+    trash-cli \
+    ctags-etags"
+
+# Installing Vundle
+info "Installing Vundle for Vim"
+run_cmd "mkdir -p ~/.vim/bundle"
+run_cmd "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
