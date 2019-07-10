@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source common
+
+# Personal
+info "Installing packages"
+sudo_run_cmd "dnf install -y \
+    gimp \
+    inkscape"

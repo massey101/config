@@ -1,0 +1,102 @@
+#!/bin/bash
+
+source common
+
+# Install tweak tool
+
+info "Installing Gnome Tweak Tool"
+sudo_run_cmd "dnf install -y \
+    gnome-tweak-tool"
+
+# User settings
+
+info "Making Caps an additional Esc"
+run_cmd "gsettings set org.gnome.desktop.input-sources xkb-options \"['caps:escape']\""
+
+info "Setting Keyboard options"
+run_cmd "gsettings set org.gnome.desktop.peripherals.keyboard delay 260"
+run_cmd "gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 14"
+
+info "Setting Mouse options"
+run_cmd "gsettings set org.gnome.desktop.peripherals.mouse speed 0.22222"
+run_cmd "gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'"
+
+info "Setting Monospace Font"
+run_cmd "gsettings set org.gnome.desktop.interface monospace-font-name 'Liberation Mono 11'"
+
+info "Setting Weekdate"
+run_cmd "gsettings set org.gnome.desktop.calendar show-weekdate true"
+
+info "Setting terminal menubar"
+run_cmd "gsettings set org.gnome.Terminal.Legacy.Settings default-show-menubar false"
+
+info "Setting workspace on all monitors"
+run_cmd "gsettings set org.gnome.mutter workspaces-only-on-primary false"
+
+info "Setting new terminal keyboard shortcut"
+run_cmd "gsettings set \
+    org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
+    \"['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom100/']\""
+run_cmd "gsettings set \
+    org.gnome.settings-daemon.plugins.media-keys.custom-keybinding\
+:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom100/ name \
+    'Open new terminal'"
+run_cmd "gsettings set \
+    org.gnome.settings-daemon.plugins.media-keys.custom-keybinding\
+:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom100/ command \
+    'gnome-terminal'"
+run_cmd "gsettings set \
+    org.gnome.settings-daemon.plugins.media-keys.custom-keybinding\
+:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom100/ binding \
+    '<Primary><Alt>t'"
+
+info "Setting topbar to show seconds, date and battery percentage"
+run_cmd "gsettings set org.gnome.desktop.interface clock-show-date true"
+run_cmd "gsettings set org.gnome.desktop.interface clock-show-seconds true"
+run_cmd "gsettings set org.gnome.desktop.interface show-battery-percentage true"
+
+info "Setting calculator to programming mode"
+run_cmd "gsettings set org.gnome.calculator button-mode programming"
+
+
+# Terminal Settings
+
+info "Setting terminal profile"
+profile=$(gsettings get org.gnome.Terminal.ProfilesList default)
+profile=${profile:1:-1} # remove quotes
+
+schema="org.gnome.Terminal.Legacy.Profile:"
+path="/org/gnome/terminal/legacy/profiles:"
+profile="/:${profile}/"
+default="${schema}${path}${profile}"
+
+run_cmd "gsettings set $default audible-bell false"
+run_cmd "gsettings set $default visible-name 'Jack'"
+run_cmd "gsettings set $default use-theme-colors false"
+run_cmd "gsettings set $default foreground-color 'rgb(255,255,255)'"
+run_cmd "gsettings set $default background-color '#000000'"
+run_cmd "gsettings set $default palette \"['rgb(0,0,0)', 'rgb(204,0,0)', 'rgb(78,154,6)', 'rgb(196,160,0)', 'rgb(52,101,164)', 'rgb(117,80,123)', 'rgb(6,152,154)', 'rgb(211,215,207)', 'rgb(85,87,83)', 'rgb(239,41,41)', 'rgb(138,226,52)', 'rgb(252,233,79)', 'rgb(114,159,207)', 'rgb(173,127,168)', 'rgb(52,226,226)', 'rgb(238,238,236)']\""
+run_cmd "gsettings set $default scrollback-unlimited true"
+run_cmd "gsettings set $default scrollbar-policy 'never'"
+
+
+# Gnome Extensions
+
+info "Installing Extensions"
+
+source gnome-common
+sudo_run_cmd "dnf install -y \
+    curl"
+
+enable_extension "AlternateTab" "alternate-tab@gnome-shell-extensions.gcampax.github.com"
+enable_extension "Launch new instance" "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
+enable_extension "Native Window Placement" "native-window-placement@gnome-shell-extensions.gcampax.github.com"
+
+install_extension "Impatience" "277" $gnome_version
+install_extension "No Topleft Hot Corner" 118 $gnome_version
+install_extension "Todo.txt" 570 $gnome_version
+install_extension "TopIcons" 495 $gnome_version
+install_extension "gTile" 28 $gnome_version
+
+info "Saving gsettings"
+record_settings
