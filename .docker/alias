@@ -36,17 +36,17 @@ get_basename() {
 # Command container aliases
 # -----------------------------------------------------------------------------
 
-pep8() {
-    exportdir=$(pwd)
-    dirname=$(get_basename $exportdir)
-    workingdir="."
-
-    docker run -it \
-        -v "${exportdir}:/${dirname}" \
-        -w /${dirname}/${workingdir} \
-        pep8 \
-        "$@"
-}
+# pep8() {
+#     exportdir=$(pwd)
+#     dirname=$(get_basename $exportdir)
+#     workingdir="."
+# 
+#     docker run -it \
+#         -v "${exportdir}:/${dirname}" \
+#         -w /${dirname}/${workingdir} \
+#         pep8 \
+#         "$@"
+# }
 
 cura() {
     exportdir=$(pwd)
