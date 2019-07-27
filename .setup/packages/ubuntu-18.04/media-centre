@@ -1,0 +1,34 @@
+#!/bin/bash
+
+source common
+
+# Media Centre
+
+# Setting Scaling
+info "Setting scaling"
+run_cmd "gsettings set org.gnome.desktop.interface text-scaling-factor 1.3"
+
+# Installing packages
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    keepassx \
+    lm-sensors \
+    curl \
+    encfs \
+    smplayer \
+    vlc \
+    ubuntu-restricted-extras"
+
+# Expressvpn
+info "Installing ExpressVPN"
+run_cmd "curl -L -o /tmp/expressvpn.deb https://download.expressvpn.xyz/clients/linux/expressvpn_1.2.0_amd64.deb"
+sudo_run_cmd "dpkg -i /tmp/expressvpn.deb || apt-get install -f -y"
+
+# Google Chrome
+info "Installing Google Chrome"
+run_cmd "curl -L -o /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+sudo_run_cmd "dpkg -i /tmp/chrome.deb || apt-get install -f -y"
+
+# Bluetooth
+info "Preparing bluetooth for A2DP"
+sudo_run_cmd "sed -i.bak 's/load-module module-bluetooth-discover/#load-module module-bluetooth-discover/g' /etc/pulse/default.pa"

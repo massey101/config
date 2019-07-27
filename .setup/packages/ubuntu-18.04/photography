@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source common
+
+# Photography
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    darktable \
+    rapid-photo-downloader \
+    gimp \
+    hugin"

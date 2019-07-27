@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source common
+
+sudo_run_cmd "apt-get update"
+sudo_run_cmd "apt-get upgrade -y"

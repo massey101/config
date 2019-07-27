@@ -1,0 +1,27 @@
+#!/bin/bash
+
+source common
+
+# Personal
+info "Installing packages"
+sudo_run_cmd "apt-get install -y \
+    keepassx \
+    lm-sensors \
+    chromium-browser \
+    curl \
+    encfs \
+    smplayer \
+    ubuntu-restricted-extras \
+    gimp \
+    inkscape \
+    audacity"
+
+# Expressvpn
+info "Installing ExpressVPN"
+run_cmd "curl -L -o /tmp/expressvpn.deb https://download.expressvpn.xyz/clients/linux/expressvpn_2.1.0-1_amd64.deb"
+sudo_run_cmd "dpkg -i /tmp/expressvpn.deb || apt-get install -f -y"
+
+# Bluetooth
+info "Preparing bluetooth for A2DP"
+sudo_run_cmd "sed -i.bak 's/load-module module-bluetooth-discover/#load-module module-bluetooth-discover/g' /etc/pulse/default.pa"
+sudo_run_cmd "sed -i.bak $'s/^fi/    \/usr\/bin\/pactl load-module module-bluetooth-discover\\\nfi/g' /usr/bin/start-pulseaudio-x11"
