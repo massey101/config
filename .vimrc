@@ -82,6 +82,8 @@ let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 set spelllang=en
 set spell
 
+set nocscopeverbose
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ Vim Airline                                                            """
