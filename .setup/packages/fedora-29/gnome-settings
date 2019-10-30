@@ -58,6 +58,9 @@ run_cmd "gsettings set org.gnome.desktop.interface show-battery-percentage true"
 info "Setting calculator to programming mode"
 run_cmd "gsettings set org.gnome.calculator button-mode programming"
 
+info "Setting Nautilus to list mode"
+run_cmd "gsettings set org.gnome.nautilus.preferences default-folder-viewer 'list-view'"
+
 
 # Terminal Settings
 
