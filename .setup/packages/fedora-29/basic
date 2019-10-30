@@ -11,7 +11,8 @@ sudo_run_cmd "dnf install -y \
     elinks \
     openssh-server \
     trash-cli \
-    ctags-etags"
+    ctags-etags \
+    nano"
 
 # Installing Vundle
 info "Installing Vundle for Vim"

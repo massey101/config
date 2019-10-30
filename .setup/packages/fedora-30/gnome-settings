@@ -90,12 +90,9 @@ sudo_run_cmd "dnf install -y \
 
 enable_extension "AlternateTab" "alternate-tab@gnome-shell-extensions.gcampax.github.com"
 enable_extension "Launch new instance" "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
-enable_extension "Native Window Placement" "native-window-placement@gnome-shell-extensions.gcampax.github.com"
 
 install_extension "Impatience" "277" $gnome_version
 install_extension "No Topleft Hot Corner" 118 $gnome_version
-install_extension "Todo.txt" 570 $gnome_version
-install_extension "TopIcons" 495 $gnome_version
 install_extension "gTile" 28 $gnome_version
 
 info "Saving gsettings"

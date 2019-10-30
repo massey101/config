@@ -6,4 +6,6 @@ source common
 info "Installing packages"
 sudo_run_cmd "dnf install -y \
     gimp \
-    inkscape"
+    inkscape \
+    mplayer \
+    powertop"

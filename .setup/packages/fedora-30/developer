@@ -15,7 +15,9 @@ sudo_run_cmd "dnf install -y \
     dia \
     gitg \
     nmap \
-    whois"
+    gdb \
+    whois \
+    asciio"
 
 # Docker
 info "Installing Docker"
