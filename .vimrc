@@ -77,6 +77,9 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set noswapfile
+let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+set spelllang=en
+set spell
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
