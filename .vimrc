@@ -140,10 +140,11 @@ autocmd Filetype go setlocal softtabstop=4
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" ALE AVR-GCC Settings                                                   """
+""" AVR GCC                                                                """
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ale_c_gcc_executable = 'avr-gcc'
-let g:ale_c_gcc_options = '-Wall -mmcu=atmega328 -Os -std=c99 -DF_CPU=8000000UL'
+let g:ale_c_gcc_options = '-std=c99 -Wall -mmcu=atmega328 -DF_CPU=8000000 -Os'
+autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
