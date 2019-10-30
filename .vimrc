@@ -14,6 +14,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'w0rp/ale'
 Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'vim-scripts/Conque-GDB'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -153,6 +154,16 @@ autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 :hi Folded ctermbg=022
 :hi Folded ctermfg=255
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Conque-GDB                                                             """
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 1: strip color after 200 lines, 2: always with color
+let g:ConqueTerm_Color = 2
+" close conque when program ends running
+" let g:ConqueTerm_CloseOnEnd = 1
+" display warning messages if conqueTerm is configured incorrectly
+let g:ConqueTerm_StartMessages = 0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
