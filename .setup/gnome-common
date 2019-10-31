@@ -73,8 +73,7 @@ install_extension() {
     extract_info "$extension_info"
 
     if check_version_unavailability "$3" ${EXTENSION_VERSIONS[@]}; then
-        echo "Extension $EXTENSION_NAME not available for $3"
-        return 1
+        echo "WARNING Extension $EXTENSION_NAME not available for $3"
     fi
 
     download_version "$extension_info" "$3" "$2" "$1" || return $?
