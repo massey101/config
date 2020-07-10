@@ -220,3 +220,15 @@ docker_project() {
     cp -r ${dockerfile_prefix}/example_docker $1
     echo "Done."
 }
+
+# Podman quick run
+pqr() {
+    podman run \
+        --interactive \
+        --tty \
+        --rm \
+        -v=$(realpath "$PWD"):/wd:Z \
+        -w=/wd \
+        sde-centos \
+        bash
+}
