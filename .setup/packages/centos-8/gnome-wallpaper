@@ -1,0 +1,28 @@
+#!/bin/bash
+
+source common
+
+# Download and install wallpaper
+info "Installing curl"
+sudo_run_cmd "dnf install -y \
+    curl"
+
+info "Downloading wallpaper"
+run_cmd "mkdir -p $HOME/.wallpapers"
+run_cmd "curl --fail https://i.imgur.com/PFjzWqs.png -o $HOME/.wallpapers/mrpb-2560x1440.png"
+run_cmd "curl --fail https://i.imgur.com/NuJ28ra.png -o $HOME/.wallpapers/mrpb-1920x1080.png"
+run_cmd "curl --fail https://i.imgur.com/ZYaJspM.png -o $HOME/.wallpapers/mrpb-1920x1200.png"
+run_cmd "echo '<background>
+    <static>
+        <file>
+            <!-- Wide 16:9 -->
+            <size width=\"1920\" height=\"1080\">$HOME/.wallpapers/mrpb-1920x1080.png</size>
+            <size width=\"2560\" height=\"1440\">$HOME/.wallpapers/mrpb-2560x1440.png</size>
+            <!-- Wide 16:10 -->
+            <size width=\"1920\" height=\"1200\">$HOME/.wallpapers/mrpb-1920x1200.png</size>
+        </file>
+    </static>
+</background>' > $HOME/.wallpapers/mrpb.xml"
+info "Setting wallpaper"
+run_cmd "gsettings set org.gnome.desktop.background picture-uri file://$HOME/.wallpapers/mrpb.xml"
+run_cmd "gsettings set org.gnome.desktop.screensaver picture-uri file://$HOME/.wallpapers/mrpb.xml"
