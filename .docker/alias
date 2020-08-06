@@ -229,6 +229,18 @@ pqr() {
         --rm \
         -v=$(realpath "$PWD"):/wd:Z \
         -w=/wd \
+        centos:latest \
+        bash
+}
+
+pqr-sde() {
+    podman run \
+        --interactive \
+        --tty \
+        --rm \
+        -v=$(realpath "$PWD"):/wd:Z \
+        -w=/wd \
         sde-centos \
         bash
 }
+
